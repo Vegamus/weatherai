@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>How is the Weather Below</h1>
+        <form action="/" method="post">
+            <input type="text" name="city" placeholder="Search for a city" autofocus required>
+            <button type="submit">Search</button>
+        </form>
+        {% if weather_data %}
+        <div class="weather-info">
+            <h2 class="city-name">{{ city }}</h2>
+            <div class="weather-icon">
+                <img src="http://openweathermap.org/img/wn/{{ weather_data.weather[0].icon }}@2x.png" alt="{{ weather_data.weather[0].description }}">
+            </div>
+            <h3 class="local-time">{{ local_time.strftime('%Y-%m-%d %H:%M:%S') }}</h3>
+            <p class="weather-description">{{ weather_data.weather[0].description }}</p>
+            <p class="temperature">{{ weather_data.main.temp }} °C</p>
+            <p class="city-description">{{ city_description }}</p>
+        </div>
+        {% endif %}        
+    </div>
+</body>
+</html>
