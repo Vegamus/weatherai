@@ -3,6 +3,10 @@ import requests
 from datetime import datetime, timedelta
 import openai
 
+from dotenv import load_dotenv
+load_dotenv()
+
+
 openai.api_key = ("OPENAI_API_KEY")
 
 
